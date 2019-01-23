@@ -71,7 +71,7 @@ pip install -r requirements.txt
 python manage.py createdb --noinput
 ```
 
-7 - Enable site access
+8 - Enable site access
 
 Using information grabbed in step 4 look annotate devspaces published DNS name in following format:
   `mezzanine.<devspaces-user>.devspaces.io`
@@ -134,56 +134,40 @@ devspaces/docker-cli.sh start
 devspaces/docker-cli.sh exec
 ```
 
-TODO update
-
-4 - Configure Scipio Development environment
+4 - Build Mezzanine
 
 ```bash
-./install.sh
+python setup.py install
 ```
 
-
-Select option `1` in install menu.
-
-5 - Run Scipio
+5 - Create default site
 
 ```bash
-./start.sh
+mezzanine-project test_project
+cd test_project
+pip install -r requirements.txt
+python manage.py createdb --noinput
 ```
 
-Access application URLs:
-
-* Application: 
-    * http://localhost/
-    * http://localhost/shop
-    * http://localhost:8080/shop
-* Admin:
-    * https://localhost:8443/admin
-
-6 - Stop Scipio
-
-```bash 
-./stop.sh
-```
-
-In a second terminal window.
-
-7 - Clean
+7 - Run Mezzanine
 
 ```bash
-./ant clean-all
+python manage.py runserver 0.0.0.0:8000
 ```
 
-**Obs.:** Clean script ran in docker compose may leave some files behind, that may result in files owned by `root`user in your host OS. 
+8 - Clean build artifacts on host (if needed)
+
+**Obs.:** Clean script ran in docker compose may leave some files behind, that may result in files owned by `root`user in your host OS.
 You may complement the cleanup with the scripts below:
+
 ```bash
- # seek 
+ # seek
 ls -dl `find . -type d` | grep root | awk '{print $(NF)}'
 
  # seek and destroy
  ls -dl `find . -type d` | grep root | awk '{print $(NF)}' | xargs sudo rm -rf
 ```
- 
+
 ### Entrypoint Actions
 
-    1 - NGINX is started up in background
+    1 - hold container termination
