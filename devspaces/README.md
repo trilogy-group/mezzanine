@@ -50,52 +50,56 @@ devspaces bind mezzanine
 devspaces info mezzanine
 ```
 
-Retrieve published DNS and endpoints using this command
-
 5 - Connect to development container
 
 ```bash
 devspaces exec mezzanine
 ```
 
-TODO update
-
-6 - Configure Scipio Development environment
+6 - Build Mezzanine
 
 ```bash
-./install.sh
+python setup.py install
 ```
 
-
-Select option `1` in install menu.
-
-7 - Run Scipio
+7 - Create default site
 
 ```bash
-./start.sh
+mezzanine-project test_project
+cd test_project
+pip install -r requirements.txt
+python manage.py createdb --noinput
+```
+
+7 - Enable site access
+
+Using information grabbed in step 4 look annotate devspaces published DNS name in following format:
+  `mezzanine.<devspaces-user>.devspaces.io`
+
+Look for `test_project/local_settings.py`, and if it doesn't exists `test_project/settings.py` (in that order).
+
+```bash
+vim test_project/test_project/local_settings.py
+```
+
+Update `ALLOWED_HOSTS` entry with DNS name published name:
+
+```bash
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'mezzanine.<devspaces-user>.devspaces.io']
+```
+
+9 - Run Mezzanine
+
+```bash
+python manage.py runserver 0.0.0.0:8000
 ```
 
 Access application URLs:
 
 Using information retrieved in step 4, access the following URL's:
 
-* Application (bound to port 80): 
+* Application (bound to port 8000):
   * `http://mezzanine.<devspaces-user>.devspaces.io:<published-ports>/`
-
-8 - Stop Scipio
-
-```bash 
-./stop.sh
-```
-
-In a second terminal window.
-
-9 - Clean 
-
-```bash
-./ant clean-all
-```
-
 
 ### Docker Script Manager (CLI)
 
