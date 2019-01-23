@@ -6,7 +6,7 @@ Manage your Devspaces https://www.devspaces.io/.
 
 Read up-to-date documentation about cli installation and operation in https://www.devspaces.io/devspaces/help.
 
-Here follows the main commands used in Devspaces cli. 
+Here follows the main commands used in Devspaces cli.
 
 |action   |Description                                                                                   |
 |---------|----------------------------------------------------------------------------------------------|
@@ -156,7 +156,7 @@ python manage.py runserver 0.0.0.0:8000
 ```
 
 Application (bound to port 8000):
-  * `http://localhost:8000>/admin/`
+  * http://localhost:8000/admin/
 
 8 - Clean build artifacts on host (if needed)
 
