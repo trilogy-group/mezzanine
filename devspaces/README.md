@@ -134,13 +134,13 @@ devspaces/docker-cli.sh start
 devspaces/docker-cli.sh exec
 ```
 
-4 - Build Mezzanine
+3 - Build Mezzanine
 
 ```bash
 python setup.py install
 ```
 
-5 - Create default site
+4 - Create default site
 
 ```bash
 mezzanine-project test_project
@@ -149,7 +149,7 @@ pip install -r requirements.txt
 python manage.py createdb --noinput
 ```
 
-7 - Run Mezzanine
+5 - Run Mezzanine
 
 ```bash
 python manage.py runserver 0.0.0.0:8000
@@ -158,7 +158,7 @@ python manage.py runserver 0.0.0.0:8000
 Application (bound to port 8000):
   * http://localhost:8000/admin/
 
-8 - Clean build artifacts on host (if needed)
+6 - Clean build artifacts on host (if needed)
 
 **Obs.:** Clean script ran in docker compose may leave some files behind, that may result in files owned by `root`user in your host OS.
 You may complement the cleanup with the scripts below:
@@ -168,7 +168,7 @@ You may complement the cleanup with the scripts below:
 ls -dl `find . -type d` | grep root | awk '{print $(NF)}'
 
  # seek and destroy
- ls -dl `find . -type d` | grep root | awk '{print $(NF)}' | xargs sudo rm -rf
+ls -dl `find . -type d` | grep root | awk '{print $(NF)}' | xargs sudo rm -rf
 ```
 
 ### Entrypoint Actions
