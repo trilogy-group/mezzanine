@@ -99,7 +99,7 @@ Access application URLs:
 Using information retrieved in step 4, access the following URL's:
 
 * Application (bound to port 8000):
-  * `http://mezzanine.<devspaces-user>.devspaces.io:<published-ports>/`
+  * `http://mezzanine.<devspaces-user>.devspaces.io:<published-ports>/admin/`
 
 ### Docker Script Manager (CLI)
 
@@ -154,6 +154,9 @@ python manage.py createdb --noinput
 ```bash
 python manage.py runserver 0.0.0.0:8000
 ```
+
+Application (bound to port 8000):
+  * `http://localhost:8000>/admin/`
 
 8 - Clean build artifacts on host (if needed)
 
