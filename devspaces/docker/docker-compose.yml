@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  mezzanine-devspaces:
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    entrypoint: /opt/scripts/entrypoint.sh
+    volumes:
+    - type: bind
+      source: ../../
+      target: /data
+    ports:
+    - "8000:8000" # web app http port
+    networks:
+    - default
+    container_name: mezzanine-devspaces
+
+networks:
+  default:
